@@ -6,5 +6,6 @@ nav:
   - 软件工程: 
     - 课程简介: software-engineering/intro/main.md
     - 笔记: software-engineering/note/main.md
-  - 关于: about.md
-
+  - 习思想:
+    - 课程简介: xi-mind/intro/main.md
+    - 笔记: xi-mind/note/main.md
