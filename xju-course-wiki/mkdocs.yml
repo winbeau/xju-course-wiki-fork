@@ -1,0 +1,7 @@
+site_name: XJU Course Wiki
+theme: 
+  name: material
+nav:
+  - Home: index.md
+  - About: about.md
+
