@@ -1,14 +1,14 @@
-# 软件工程课程简介
+## 分数分布
 
-## 课程评价
-无尽的画图，厚重的砖头。
+总成绩 = $60\% \times$ 期末+ $40\% \times$ 平时
 
-## 复习资料
-1. [练习题](https://github.com/Indolent-Kawhi/XJU-Computing-Heart/tree/master/%E8%AF%BE%E7%A8%8B%E8%B5%84%E6%96%99/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B)
-2. [PPT](https://github.com/Indolent-Kawhi/XJU-Computing-Heart/tree/master/%E8%AF%BE%E7%A8%8B%E8%B5%84%E6%96%99/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/PPT)
-
-## 推荐老师
-- 郑炅
+| 知识点           | 分数 |
+| ---------------- | ---- |
+| 矩阵             | 45   |
+| 向量组线性相关性 | 25   |
+| 行列式           | 15   |
+| 线性方程组       | 15   |
+| 二次型           | 5    |
 
 <script src="https://giscus.app/client.js"
         data-repo="SunSeaLucky/xju-course-wiki"
