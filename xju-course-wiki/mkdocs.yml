@@ -2,12 +2,17 @@ site_name: XJU Course Wiki
 theme: 
   name: material
 repo_url: https://github.com/SunSeaLucky/xju-course-wiki
+# ------ KaTeX Settings ------
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
 extra_javascript:
-  - javascripts/mathjax.js
-  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+extra_css:
+  - https://unpkg.com/katex@0/dist/katex.min.css
+# ------ KaTeX Settings ------
 nav:
   - 首页: index.md
   - 软件工程: 
@@ -23,6 +28,12 @@ nav:
   - 计算机组成原理:
     - 课程简介: principles-of- computer-composition/intro/main.md
     - 笔记: principles-of- computer-composition/note/main.md
+  - 信号与系统分析基础:
+    - 课程简介: signal-analysis/intro/main.md
+    - 笔记: signal-analysis/note/main.md
+  - 汇编语言程序设计:
+    - 课程简介: assembly-language/intro/main.md
+    - 笔记: assembly-language/note/main.md
   - 离散数学:
     - 课程简介: discrete-math/intro/main.md
     - 笔记: discrete-math/note/main.md
