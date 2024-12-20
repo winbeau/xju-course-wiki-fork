@@ -2,6 +2,12 @@ site_name: XJU Course Wiki
 theme: 
   name: material
 repo_url: https://github.com/SunSeaLucky/xju-course-wiki
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 nav:
   - 首页: index.md
   - 软件工程: 
@@ -10,6 +16,13 @@ nav:
   - 习概:
     - 课程简介: xi-mind/intro/main.md
     - 笔记: xi-mind/note/main.md
+  - Linux:
+    - 课程简介: linux/intro/main.md
+    - 笔记: linux/note/main.md
+    - 实验: linux/lab/main.md
+  - 计算机组成原理:
+    - 课程简介: principles-of- computer-composition/intro/main.md
+    - 笔记: principles-of- computer-composition/note/main.md
   - 离散数学:
     - 课程简介: discrete-math/intro/main.md
     - 笔记: discrete-math/note/main.md
@@ -19,7 +32,3 @@ nav:
   - 线性代数:
     - 课程简介: linear-algebra/intro/main.md
     - 笔记: linear-algebra/note/main.md
-  - Linux:
-    - 课程简介: linux/intro/main.md
-    - 笔记: linux/note/main.md
-    - 实验: linux/lab/main.md

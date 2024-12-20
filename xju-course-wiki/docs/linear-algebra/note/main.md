@@ -301,10 +301,3 @@ $b_3=a_3-\frac{<a_3,b_2>}{<b_2,b_2>}b_2-\frac{<a_3,b_1>}{<b_1,b_1>}b_1$
 ## 5 二次型
 
 实在写不动了，这章不难内容也少，自己看书吧宝贝儿 ~
-
-<script>
-MathJax = {
-tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
-};
-</script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
