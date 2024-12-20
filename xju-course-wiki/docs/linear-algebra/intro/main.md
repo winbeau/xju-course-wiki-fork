@@ -10,6 +10,11 @@
 | 线性方程组       | 15   |
 | 二次型           | 5    |
 
+\* 此为 2023 年某学期的成绩分布。每学期可能有变动，仅供参考。
+
+## 推荐老师
+- 盛玉红
+
 <script src="https://giscus.app/client.js"
         data-repo="SunSeaLucky/xju-course-wiki"
         data-repo-id="R_kgDONf4gSg"
@@ -25,3 +30,9 @@
         crossorigin="anonymous"
         async>
 </script>
+<script>
+MathJax = {
+tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
