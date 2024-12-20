@@ -1,6 +1,7 @@
 site_name: XJU Course Wiki
 theme: 
   name: material
+repo_url: https://github.com/SunSeaLucky/xju-course-wiki
 nav:
   - 首页: index.md
   - 软件工程: 
