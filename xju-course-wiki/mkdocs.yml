@@ -18,3 +18,7 @@ nav:
   - 线性代数:
     - 课程简介: linear-algebra/intro/main.md
     - 笔记: linear-algebra/note/main.md
+  - Linux:
+    - 课程简介: linux/intro/main.md
+    - 笔记: linux/note/main.md
+    - 实验: linux/lab/main.md

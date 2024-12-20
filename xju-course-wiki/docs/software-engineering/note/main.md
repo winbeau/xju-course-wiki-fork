@@ -40,7 +40,9 @@
 > 有关处理逻辑：计算成绩
 - 成本/效益分析
 > 成本估计：代码行技术（软件成本 = 每行代码的平均成本 × 估计的源代码总行数）、任务分解技术、自动估计成本技术
+>
 > 成本估计的经验模型：1978年 `Putnam` 提出的，一种动态多变量模型。 $L=C_k\cdot K^{1/3} \cdot t_d^{4/3}$
+>
 > 成本估计模型：`COCOMO` 模型（基本 `COCOMO` 模型、中级 `COCOMO` 模型、详细 `COCOMO` 模型）），这模型是精确的、定量的好模型。在这里项目的开发类型分为 3 种：组织型、嵌入型、半独立型。
 
 ## 需求分析
@@ -50,3 +52,9 @@
 - 数据模型（E-R 图）&rArr; 功能模型（数据流图）&rArr; 行为模型（状态图）
 
 
+<script>
+MathJax = {
+tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
