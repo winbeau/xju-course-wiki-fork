@@ -1,6 +1,9 @@
 # 信号分析基础
 
-## 信号与系统的基本概念
+## 1 信号与系统的基本概念
+
+---
+
 - 信号定义：信号是信息的载体，信息是信号的内涵。
 - 信号的分类：
     - 连续时间信号 - 离散时间序列
@@ -36,10 +39,13 @@
     - **零状态响应**：忽略系统的初始状态，**只由外部激励**作用于系统而产生的输出响应，用 $y_{zs}(t)$ 表示
     - **全响应**：$y_{zi}(t) + y_{zs}(t)$
         
-## 连续信号的傅里叶变换
-#### 傅里叶级数
+## 2 连续信号的傅里叶变换
+
+---
+
+#### Fourier 级数
 ![傅里叶级数的单边频谱](image.png)
-![傅里叶级数的双边频谱](image1.png)]
+![傅里叶级数的双边频谱](image1.png)
 
 
 - **三角形式的傅里叶级数**：$\boxed{f\left(t\right)=a_{0}+\sum_{n=1}^{\infty}\left(a_{n}\cos n\omega_{1}t+b_{n}\sin n\omega_{1}t\right)}$；余弦形式：$f\left(t\right)=c_{0}+\sum_{n=1}^{\infty}c_{n}\cos\left(n\omega_{1}t+\varphi_{n}\right)$；正弦形式：$f\left(t\right)=d_{0}+\sum_{n=1}^{\infty}d_{n}\sin\left(n\omega_{1}t+\theta_{n}\right)$
@@ -63,7 +69,7 @@
 - 周期信号频谱的特点：离散性、谐波性、收敛性
 
 
-#### 傅里叶变换
+#### FT
 - 正变换：$\boxed{F\left(j\omega\right)=\mathcal{F}\left[f\left(t\right)\right]=\int_{-\infty}^{\infty}f\left(t\right)e^{-j\omega t}dt}$
 - 逆变换：$\boxed{f\left(t\right)=\mathcal{F}^{-1}\left[F\left(j\omega\right)\right]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F\left(j\omega\right)e^{j\omega t}d\omega}$
 - 傅里叶变换是一对线性变换，它们之间存在一一对应的关系
@@ -88,10 +94,10 @@
     - 单位阶跃信号：$\boxed{u(t) \xleftrightarrow{F} \pi\delta(\omega)+\frac{1}{j\omega}}$
         
 
-#### 傅里叶变换的基本性质
+#### FT 的基本性质
 ![傅里叶变换的基本性质](image2.jpg)
 
-#### 周期信号的傅里叶变换
+#### 周期信号的 FT
 - 直接使用傅里叶变换的定义的前提条件是要满足**绝对可积**，但周期信号并不满足绝对可积的条件。而引入**奇异函数**后，某些不满足绝对可积的信号也可以求傅里叶变换，所以有这一节。
 - 周期信号的傅里叶变换公式：$F\left(j\omega\right)=2\pi\sum_{n=-\infty}^{\infty}F_{n}\delta\left(\omega-n\omega_{1}\right)=\omega_{1}\sum_{n=-\infty}^{\infty}F_{0}\left(jn\omega_{1}\right)\delta\left(\omega-n\omega_{1}\right)$
 - 余弦函数的傅里叶变换：$\mathcal{F}\left[\cos\left(\omega_{0}t\right)\right]=\pi\left[\delta\left(\omega-\omega_{0}\right)+\delta\left(\omega+\omega_{0}\right)\right]$
@@ -100,22 +106,22 @@
 - 周期矩形脉冲序列的傅里叶变换：$E\tau\omega_{1}\sum_{n=-\infty}^{\infty}sinc\left(\frac{n\omega_{1}\tau}{2}\right)\delta\left(\omega-n\omega_{1}\right)$；其傅里叶系数：$F_{n}=\frac{1}{T}F_{0}\left(jn\omega_{1}\right)=\frac{E\tau}{T}sinc\left(\frac{n\omega_{1}\tau}{2}\right)$
 
 
-#### 抽样信号的傅里叶变换
+#### 抽样信号的 FT
 - 时域抽样定理（奈奎斯特定理）：一个频带受限的信号 $f(t)$，要想抽样后能够不失真地还原出原信号，抽样频率必须大于 2 倍信号谱的最高频率。
 
 
-## 连续信号的拉普拉斯变换
+## 3 连续信号的拉普拉斯变换
 
-#### 拉普拉斯变换的定义及收敛域
+#### LT 的定义及收敛域
 - 为什么要有拉普拉斯变换：傅里叶变换需要满足绝对可积的先决条件，为不收敛的函数乘上收敛因子后，就可以满足这一条件。而乘上收敛因子再求其傅里叶变换的过程，就可以视为拉普拉斯变换。
 - 求法：$\begin{cases} F\left(s\right)=\int_{-\infty}^{\infty}f\left(t\right)e^{-st}dt \\ f\left(t\right)=\frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty}F\left(s\right)e^{st}ds & \end{cases}$
 - 收敛域：右边信号（$\sigma > \sigma_1$）、左边信号（$\sigma < \sigma_2$）、双边信号（$\sigma_1 < \sigma < \sigma_2$）、时限信号（整个 s 平面）
 
 ![常见的变换对](3.png)
 
-#### 单边拉普拉斯变换的性质
+#### 单边 LT 的性质
 ![性质](4.png)
-#### 单边拉普拉斯的逆变换
+#### 单边 LT 的逆变换
 - 查表法
 - 部分分式展开法
     - 分母的所有根均为单实根：分式划开，各部查表
@@ -131,9 +137,9 @@
     - 临界稳定：*$H(s)$ 在虚轴上有 $p=0$ 的单极点或一对共轭单极点，其余极点全在 $s$ 域的左半平面*
     - 不稳定：*$H(s)$ 只要有一个极点位于 $s$ 域的右半平面，或在虚轴上有二阶或二阶以上的重极点，则系统不稳定。*
     
+## 4 离散信号与系统
 
-
-## 离散信号与系统
+---
 
 #### z 变换
 - $\boxed{X\left(z\right)=\sum_{-\infty}^{\infty}x\left(n\right)z^{-n}}$，其中 $z = e^{s}$
@@ -151,9 +157,13 @@
 #### z 逆变换
 
 
-## 离散傅里叶变换
+## 5 离散傅里叶变换（DFT）
 
-## 快速傅里叶变换
+---
+
+## 6 快速傅里叶变换（FFT）
+
+---
 
 #### 按时间抽取的基-2FFT算法
 
@@ -161,11 +171,48 @@
 - 本算法和按频率抽取的基-2FFT算法的复杂度：$\frac{N}{2}\mathrm{log}_2N$
 
 ![按时间抽取的基-2FFT算法](5.png)
+
 #### 按频率抽取的基-2FFT算法
 
 ![按频率抽取的基-2FFT算法](6.png)
-#### 逆快速傅里叶变换
 
-- $x[k]=\frac{1}{N}\left(\mathrm{DFT}\{X^*[m]\}\right)^*$
+#### 逆快速傅里叶变换（IFFT）
+
+- $x[k]=\frac{1}{N}(\mathrm{DFT}\{X^*[m]\})^*$
 - 意即：将 $X[m]$ 选取共轭，用 $FFT$ 流图计算 $DFT\{X^*[m]\}$，再取共轭并除以 $N$
 
+## 7 数字滤波器设计
+
+---
+
+#### 滤波器的基本概念
+- 概念 离散时间系统，输入、输出均为数字信号。可以根据需要，通过数值运算改变信号频率成分的相对比例，或者有选择性的滤除输入信号的某些频率成分
+- 按功能分类![alt text](image-1.png)
+- 按单位脉冲响应长度分类
+    - FIR 滤波器 $H(z)=\sum_{n=0}^{N-1}h(n)z^{-n}$
+    - IIR(Infinite Impulse Response) 滤波器 $H(z)=\frac{\sum_{j=0}^{M}b_{j}z^{-j}}{1+\sum_{i=1}^{N}a_{i}z^{-i}}$
+- 技术指标
+    - 频率响应函数：$H(e^{j\omega})=\left|H(e^{j\omega})\right|e^{j\theta(\omega)}$，则：
+      - 幅频特性 $\left|H(e^{j\omega})\right|$，表示信号通过该滤波器后**各频率成分振幅衰减**情况
+      - 相频特性 $\theta(\omega)$，反应各频率成分通过滤波器后**各频率成分在时间上的延时**情况
+    - 理想数字滤波器
+      - ![alt text](image-2.png)
+      - 通带衰减(dB) $A_{\mathrm{p}}=-20\lg(1-\delta_{\mathrm{p}})$
+      - 阻带衰减(dB) $A_{\mathrm{s}}=-20\lg\delta_{\mathrm{s}}$
+    - 实际低通数字滤波器
+      - ![alt text](image-3.png)
+      - $\omega_\mathrm{p}$：通带截止频率
+      - $\omega_\mathrm{s}$：阻带截止频率
+      - $\delta_{\mathfrak{p}}$：通带波动
+      - $\delta_{\mathrm{s}}$：阻带波动
+
+#### 常用模拟滤波器的设计方法
+- 由幅度平方函数确定。看不懂，做题碰到了再说吧。
+- Butterworth 低通逼近
+    - ![alt text](image-4.png)
+    - $\left|H(\mathrm{j}\Omega)\right|^2=\frac{1}{1+\left(\Omega/\Omega_\mathrm{c}\right)^{2N}}$
+    - 具有单调下降的幅频特性
+    - 最大平坦性 $|H(\mathrm{j}\Omega)|^2$ 在 $\Omega=0 $ 点的 $1$ 到 $2N-1$ 阶导数为零
+    - 3dB 不变性 不管 N 为多少，所有的特性曲线都通过 -3dB 点，或者说衰减为 3dB
+- Chebyshev 低通逼近
+    - 幅频特性在通带或阻带内有波动，可以提高选择性
