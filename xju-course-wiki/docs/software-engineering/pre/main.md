@@ -230,7 +230,7 @@ stateDiagram-v2
 2. Python 后端接收数据，进行 OCR 识别和模式匹配分析。
 3. 分析结果以 JSON 格式输出，供记账软件使用。
 
-![alt text](1-DFD.png)
+![alt text](dataflow-diagram.png)
 
 ---
 
