@@ -7,3 +7,4 @@
 
 ## 推荐课程
 1. B 站[傅里叶变换从零到一](https://www.bilibili.com/video/BV14M4y197Tc)，视频很像营销号，但是动画确实通俗易懂。
+2. 完美理解啥是幅度谱、啥是相位谱：[傅里叶变换这样学，何愁不会呢？直观理解傅里叶变换](https://www.bilibili.com/video/BV1uY411z7uk)
