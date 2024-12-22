@@ -63,8 +63,8 @@ nav:
         - 笔记: linux/note/main.md
         - 实验: linux/lab/main.md
     - 计算机组成原理:
-        - 课程简介: principles-of- computer-composition/intro/main.md
-        - 笔记: principles-of- computer-composition/note/main.md
+        - 课程简介: principles-of-computer-composition/intro/main.md
+        - 笔记: principles-of-computer-composition/note/main.md
     - 信号与系统分析基础:
         - 课程简介: signal-analysis/intro/main.md
         - 笔记: signal-analysis/note/main.md
