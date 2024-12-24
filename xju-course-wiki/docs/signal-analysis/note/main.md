@@ -154,7 +154,19 @@
     - 双边序列：$R_{x1}<|z|<R_{x2}$
     
 ![典型 z 变换](8.png)
+
 #### z 逆变换
+- 部分分式法
+- 幂级数法（长除法，也就是硬除）
+
+#### z 变换的性质与定理
+
+- 线性：$Z\left[ax(n)+by(n)\right]=aX(z)+bY(z)\quad\left(R_1<\left|z\right|<R_2\right)$，收敛域取交集
+- 位移性：$Z\left[x(n-n_0)\right]=z^{-n_0}X(z)$，收敛域只会影响 $z=0$ 和 $z=\infty$ 处
+- 尺度变换：$Z[a^nx(n)]=X(\frac{z}{a})~~~(R_{x1}<\left|\frac{z}{a}\right|<R_{x2})$
+- 序列线性加权：${Z}\left[nx(n)\right]=-z\frac{\mathrm{d}X\left(z\right)}{\mathrm{d}z}\quad\left(R_{x1}<\left|z\right|<R_{x2}\right)$
+- 初值定理：$x(0)=\lim_{z\to\infty}X(z)$
+- 终值定理：$\lim_{n\to\infty}x(n)=\lim_{z\to1}(z-1)X(z)$
 
 
 ## 5 离散傅里叶变换（DFT）
@@ -213,6 +225,22 @@
     - $\left|H(\mathrm{j}\Omega)\right|^2=\frac{1}{1+\left(\Omega/\Omega_\mathrm{c}\right)^{2N}}$
     - 具有单调下降的幅频特性
     - 最大平坦性 $|H(\mathrm{j}\Omega)|^2$ 在 $\Omega=0 $ 点的 $1$ 到 $2N-1$ 阶导数为零
-    - 3dB 不变性 不管 N 为多少，所有的特性曲线都通过 -3dB 点，或者说衰减为 3dB
-- Chebyshev 低通逼近
-    - 幅频特性在通带或阻带内有波动，可以提高选择性
+    - 3dB 不变性 不管 N 为多少，所有的特性曲线都通过 -3dB 点，或者说衰减为 3dB    
+- Butterworth 模拟低通滤波器的设计步骤
+    - 步骤 1：确定模拟滤波器的阶数 $N$，$N\geq\frac{\lg(\frac{10^{0.1A_s}-1}{10^{0.1A_p}-1})}{2\lg(\Omega_s/\Omega_p)}$
+    - 步骤 2：确定模拟滤波器的 $3dB$ 截频 $\Omega_c$，$\frac{\Omega_\mathrm{p}}{(10^{0.1A_\mathrm{p}}-1)^{\frac{1}{2N}}}\leq\Omega_\mathrm{c}\leq\frac{\Omega_\mathrm{s}}{(10^{0.1A_\mathrm{s}}-1)^{\frac{1}{2N}}}$
+    - \*步骤 3：计算模拟滤波器的系统函数极点
+    - \*步骤 4：得到模拟低通滤波器的系统函数 $H_L(s)$
+    - 其中，步骤 3、4，也可以通过查表法得到
+
+#### 无限长单位脉冲响应 `IIR` 数字滤波器的设计
+- 脉冲响应不变法（线性变换）
+    - 对应关系：$H(s)=\sum\limits_{i=1}^{N}\frac{A}{s-p_i}$ 和 $H(z)=\sum\limits^{N}_{i=1}\frac{TA_i}{1-e^{p_iT} z^{-1}}$
+    - 由上面的式子可知，求出 $A_i$ 和 $p_i$ 是写出两种式子的关键
+    - 优点：时域逼近良好，线性
+    - 缺点：频率响应的混叠失真，只适用于限带的模拟滤波器（**低通、带通**）
+- 双线性变换法（非线性变换，$tan$ 函数）
+    - 对应关系：$H\left(z\right)=H_{a}\left(s\right)|_{s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}}=H_{a}\left(\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}\right)$
+    - 不用分式展开，比较友好
+    - 优点：避免了混叠失真（以引入非线性为代价），能直接用于设计低通、带通、高通、带阻滤波器，保持原有的幅频性能
+    - 缺点：转换前后的频率呈非线性关系（可以通过频率预畸变减轻），产生相频特性失真
