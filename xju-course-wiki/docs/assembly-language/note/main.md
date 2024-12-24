@@ -111,4 +111,46 @@ CALL、RET
  
 
 ## 汇编语言程序格式
+
+#### 程序格式
+
+1. 简化段定义
+```asm
+.model small
+.stack
+.data
+...
+.code
+...
+.startup
+...
+.exit 0
+...
+end
+```
+
+2. 完整段定义
+```asm
+stack segment stack
+    db 256 dup(0)
+stack ends
+
+data segment
+    ; 数据定义
+data ends
+
+code segment
+    assume cs:code, ds:data, ss:stack
+    ; 代码定义
+code ends
+
+    start:        ; 程序入口
+        ; 程序代码
+        ; 程序结束
+        mov ax, 4c00h
+        int 21h
+
+end start
+```
+
 ![可执行文件的开发过程](1.png)
