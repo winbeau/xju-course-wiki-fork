@@ -39,7 +39,16 @@
 - 堆栈操作指令：push、pop（注意 push 的时候地址减少，pop 的时候地址增加）；
 - 标志传送指令：lahf、sahf、pushf、popf；
 - 地址传送指令：lea、lds、les；
-- 算术运算指令：add、adc、inc、sub、sbb、dec、neg、cmp、mul、imul、div、idiv；
+- 算术运算指令：add、adc、inc、sub、sbb、dec、cmp
+    - neg：用 0 减去操作数（会导致 `CF=1`），结果相当于按位取反加 1
+    - mul r8(16)/m8(16),
+        - ax &larr; al(x) * r8(16)/m8(16)
+    - imul r8(16)/m8(16) 
+        - ax &larr; al(x) * r8(16)/m8(16)
+    - div r8(16)/m8(16)
+        - al(ax) &larr; ax(dx.ax) 除 r8(16)/m8(16) 的商
+        - ah(dx) &larr; ax(dx.ax) 除 r8(16)/m8(16) 的余数
+    - idiv
 - 符号拓展指令：cbw（拓展到 AX）、cwd（拓展到 DX）；
 - 逻辑运算指令：and、or、xor、not、test；
 - 移位指令：shl、shr、sal、sar、rol、ror、rcl、rcr；
@@ -92,7 +101,7 @@
 - 利用 PF：JP、JPE、JNP、JPO
 - 利用 CF：JC、JB、JNAE、JNC、JNB、JAE
 - 比较无符号数时用 Above 和 Blow，而有符号数时用 Greater 和 Less。
-- 循环指令：LOOP(CX!=0)、LOOPZ/LOOPE(CX!=0 \&\& ZF=1)、LOOPNZ/LOOPNE(CX!=0 \&\& ZF=0)、JCXZ(CX!=0)
+- 循环指令：LOOP(CX!=0)、LOOPZ/LOOPE(CX!=0 && ZF=1)、LOOPNZ/LOOPNE(CX!=0 && ZF=0)、JCXZ(CX!=0)
 
 
 **子程序指令**
@@ -155,6 +164,37 @@ end start
 ```
 
 ![可执行文件的开发过程](1.png)
+
+## 基本汇编语言程序设计
+
+#### 串操作类指令
+
+- 串传送
+    - MOVSB es:[di] &larr; ds:[si], si &larr; si+1, di &larr; di+1
+    - MOVSW es:[di] &larr; ds:[si], si &larr; si+2, di &larr; di+2
+    - 常用重复前缀：REP
+- 串存储
+    - STOSB es:[di] &larr; al, di &larr; di+1
+    - STOSW es:[di] &larr; ax, di &larr; di+2
+    - 常用重复前缀：REP
+- 串读取
+    - LODSB al, ds:[si], si &larr; si+1
+    - LODSW ax, ds:[si], si &larr; si+2
+    - 常用重复前缀：REP
+- 串比较
+    - CMPSB ds:[si]-es:[di], si+1, di+1
+    - CMPSW ds:[si]-es:[di], si+2, di+2
+    - 常用重复前缀：REPZ
+
+#### 子程序的参数传递
+
+寄存器传递、变量传递、栈传递
+
+#### 子程序的嵌套、递归和重入
+- 嵌套 子程序内包含有子程序的调用
+- 递归 子程序调用自身
+- 重入 子程序被中断后，又被终端服务程序所调用。能够重入的子程序称为*可重入子程序*。
+- 子程序近调用时，入栈 2B，出栈 2B，而子程序远调用时，入栈 4B，出栈 4B。
 
 ## 32 位指令及其编程
 - 实方式
