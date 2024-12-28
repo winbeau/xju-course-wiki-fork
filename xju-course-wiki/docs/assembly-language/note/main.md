@@ -50,7 +50,9 @@
         - ah(dx) &larr; ax(dx.ax) 除 r8(16)/m8(16) 的余数
     - idiv
 - 符号拓展指令：cbw（拓展到 AX）、cwd（拓展到 DX）；
-- 逻辑运算指令：and、or、xor、not、test；
+- 逻辑运算指令
+    - 影响标志位：and、or、xor、test、neg
+    - 不影响标志位：not
 - 移位指令：shl、shr、sal、sar、rol、ror、rcl、rcr；
 - 控制转移指令：jmp，太多了，可查 55 页表 2-3。
 - 循环指令：loop、loopz、loopnz；
@@ -66,6 +68,9 @@
 - SF：符号标志，结果的最高位。
 - ZF：零标志，结果是否为 0。
 - PF：奇偶标志，运算结果低八位中 1 的个数为 0 或者偶数时，PF=1；否则 PF=0。
+
+- 判断是否影响标志位原则：是否发生了**算数、测试、比较、移数**，发生了往往是影响标志位的
+- 特殊指令 `INC` 和 `DEC` 不会影响 `CF`。
 
 
 **算术指令**
@@ -124,50 +129,64 @@ CALL、RET
 
 #### 程序格式
 
-1. 简化段定义
+- 简化段定义
+
 ```asm
 .model small
 .stack
 .data
-...
-.code
-...
-.startup
-...
-.exit 0
-...
+    ; 数据定义
+.code   
+    .startup
+    ; 代码定义
+    .exit 0
 end
 ```
 
-2. 完整段定义
+- 完整段定义
+
 ```asm
 stack segment stack
-    db 256 dup(0)
+    ; 堆栈段定义
 stack ends
-
 data segment
     ; 数据定义
 data ends
-
 code segment
     assume cs:code, ds:data, ss:stack
-    ; 代码定义
+start: ; 程序入口
+    ; 程序代码    
+    mov ax, 4c00h
+    int 21h
 code ends
-
-    start:        ; 程序入口
-        ; 程序代码
-        ; 程序结束
-        mov ax, 4c00h
-        int 21h
-
-end start
+    end start
 ```
 
 ![可执行文件的开发过程](1.png)
 
+- 伪操作
+
+| 伪操作名   | 格式               | 功能                 |  
+|------------|--------------------|----------------------|  
+| EQU        | 名字 EQU 表达式    | 给名字赋值           |  
+| =          | 名字 = 表达式      | 同上，但允许重复赋值 |  
+| LABEL      | 名字 LABEL 表达式  | 定义变量或标号的类型 |
+
+- `LABEL` 的使用示例：
+
+```asm
+AGAINF LABEL FAR
+AGAIN: PUSH BX
+```
+
+
 ## 基本汇编语言程序设计
 
 #### 串操作类指令
+
+- 源操作数用寄存器 `SI` 间接寻址，默认在数据段 `DS` 中，即 `DS:[SI]`，允许段超越
+- 目的操作数用寄存器 `DI` 间接寻址，默认在数据段 `ES` 中，即 `ES:[DI]`，不允许段超越
+- 每执行一次串操作，源指针 `SI` 和目的指针 `DI` 都自动递增或递减
 
 - 串传送
     - MOVSB es:[di] &larr; ds:[si], si &larr; si+1, di &larr; di+1
@@ -185,16 +204,80 @@ end start
     - CMPSB ds:[si]-es:[di], si+1, di+1
     - CMPSW ds:[si]-es:[di], si+2, di+2
     - 常用重复前缀：REPZ
+- 串扫描（用 `AL` 或 `AX` 的内容减去目的数据串，以比较两者的关系）
+    - SCASB ; al-es:[di], di &larr; di$\pm$1
+    - SCASW ; ax-es:[di], di &larr; di$\pm$2
 
 #### 子程序的参数传递
 
 寄存器传递、变量传递、栈传递
 
 #### 子程序的嵌套、递归和重入
+
 - 嵌套 子程序内包含有子程序的调用
 - 递归 子程序调用自身
 - 重入 子程序被中断后，又被终端服务程序所调用。能够重入的子程序称为*可重入子程序*。
 - 子程序近调用时，入栈 2B，出栈 2B，而子程序远调用时，入栈 4B，出栈 4B。
+
+## 高级汇编语言程序设计
+
+#### 宏结构程序设计
+
+- 定义
+
+```asm
+macro  macro_name arg1, arg2, ...
+    ; 宏代码
+endm
+```
+
+- 调用
+
+```asm
+macro_name arg1, arg2, ...
+```
+
+- 宏定义允许嵌套、递归
+- 宏参数
+    - 数量 $\in[0, +\infty)$，实际上肯定不是 $+\infty$，主要是我也不知道是多少
+    - 类型 可以是常数、变量、存储单元、指令、表达式
+    - 传参 使用 `&` 做变量替换。传字符串时有空格则要使用一对 `<>` 包裹。如果字符串中本身就有 `<>`，则使用 `!` 进行转义。传表达式时用 `%`，如 `%(1+2)`
+    - 宏中的标号要加上 `local` 关键字
+- 重复汇编
+`repear` 型：
+```asm
+repeat count
+    ; 重复执行的代码
+endm
+```
+`for` 型：
+```asm
+for 形参, <实参表>
+    ; 重复执行的代码
+endm
+```
+`forc` 型：
+```asm
+forc 形参, 字符串
+    ; 重复执行的代码
+endm
+```
+- 条件汇编
+```asm
+ifxx expression
+    ; 条件成立时执行的代码
+[else
+    ; 条件不成立时执行的代码]
+endif
+```
+
+#### DOS 功能调用
+- 步骤：
+    - 将调用参数装入指定寄存器
+    - 如需功能号，将它装入 `AH`
+    - 如需子功能号，将它装入 `AL`
+    - 按中断类型号调用 `DOS` 或 `BIOS` 中断（`DOS` 功能调用 `INT 21H` ）
+    - 检查返回参数是否正确
 
 ## 32 位指令及其编程
 - 实方式
