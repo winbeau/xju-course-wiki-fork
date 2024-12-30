@@ -62,6 +62,9 @@ nav:
         - 课程简介: linux/intro/main.md
         - 笔记: linux/note/main.md
         - 实验: linux/lab/main.md
+    - Python:
+        - 课程简介: python/intro/main.md
+        - 笔记: python/note/main.md
     - 计算机组成原理:
         - 课程简介: principles-of-computer-composition/intro/main.md
         - 笔记: principles-of-computer-composition/note/main.md
