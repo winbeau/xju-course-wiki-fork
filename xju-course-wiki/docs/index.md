@@ -18,6 +18,28 @@
 >
 > —— 选自 [CS 自学指南](https://csdiy.wiki/%E5%90%8E%E8%AE%B0/)
 
+## 2024 年秋季学期复习计划
+1. 1 月 7 号之前，所有需要总结的科目必须总结完成，需要总结的科目：
+    - 计算机组成原理
+    - 嵌入式系统概论
+    - [x] 软件工程
+    - 汇编语言
+    - 习概
+    - 信号
+
+2. 复习方式
+- 经典复习方式
+    - 计算机组成原理
+    - 汇编
+    - 信号
+    - 软工
+    - Linux
+- 穿插复习（穿插时长：1 hr）
+    - 嵌入式
+    - 习概
+    - 算法
+    - Python
+
 <script src="https://giscus.app/client.js"
         data-repo="SunSeaLucky/xju-course-wiki"
         data-repo-id="R_kgDONf4gSg"
