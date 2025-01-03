@@ -4,40 +4,46 @@
 
 ---
 
-- 信号定义：信号是信息的载体，信息是信号的内涵。
-- 信号的分类：
-    - 连续时间信号 - 离散时间序列
-    - 周期信号 - 非周期信号
-    - 确定性信号 - 随机信号
-    - 能量信号 - 功率信号。能量信号绝对平方可积（和），否则称为功率信号。
-    - 因果信号 - 反因果信号。**右边信号**就是**因果信号**，**左边信号**就是**反因果信号**。
-- 连续与离散信号的运算：
-    - 反褶
-    - 移位
-    - 尺度变换
-    - 加、减、乘、标量乘
-    - 差分运算：向前差分：$\nabla x[n] = x[n+1] - x[n]$；向后差分：$\Delta x[n] = x[n] - x[n-1]$。且 $\nabla x[n] = \Delta x[n-1]$。
-    - 卷积运算：连续信号的卷积分：$\int_{-\infty}^{\infty} f_1(\tau) f_2(t-\tau) d\tau$；离散信号的卷积：$x[n] * y[n] = \sum_{k=-\infty}^{\infty} x[k] y[n-k]$。卷积运算的性质：交换律、分配律、结合律。
-- 常见的信号序列：
-    - 正弦类：$f(t)=A\cos(\omega t+\varphi)$。根据欧拉恒等式，正弦函数信号可以写为：$\sin(\omega t) = \frac{e^{j\omega t}-e^{-j\omega t}}{2j}$，$\cos(\omega t) = \frac{e^{j\omega t}+e^{-j\omega t}}{2}$。
-    - 指数类：$f(t)=Ae^{st}$。根据欧拉等式，指数函数信号可以写为：$e^{j\omega t} = \cos(\omega t) + j\sin(\omega t)$。
-    - 单位冲激信号：$\boxed{f(t)=\delta(t)=\begin{cases} \infty & t = 0\\0 & t\neq 0\end{cases}}$ 且有 $\boxed{\int_{-\infty}^{\infty} \delta(t) dt=1}$，且有如下筛选特性：$\int_{-\infty}^{\infty}f\left(t\right)\delta\left(t\right)dt=\int_{0-}^{0+}f\left(t\right)\delta\left(t\right)dt=f\left(0\right)\int_{0-}^{0+}\delta\left(t\right)dt=f\left(0\right)$
-    - 单位阶跃信号：$\boxed{f(t)=u(t)=\begin{cases} 1 & t > 0\\0 & t < 0\end{cases}}$.
-    - 门函数：$\boxed{\prod(\frac{t}{\tau}) = u(t+\frac{\tau}{2}) - u(t-\frac{\tau}{2}) = \begin{cases} 1 & |t| < \frac{\tau}{2} \\ 0 & others \end{cases}}$；矩形序列：$R_N(n) = \begin{cases} 1 & 0\leq n\leq N-1 \\ 0 & others \end{cases}$。
-    - 内插函数信号（辛格函数）：$sinc(x) = \frac{\sin(x)}{x}$。
-- 系统：
-    - 直接理解成这个就行：$y(t)=T[x(t)]$
-    - **连续系统与离散系统**
-    - **线性系统与非线性系统**。线性系统要满足**可加性**和**比例性**，即：$T[x_1(t)+x_2(t)]=T[x_1(t)]+T[x_2(t)]$、$T[a_1x_1(t)]=a_1y_1(t)$。一般来说，带常数就不是线性系统，同时不满足比例性和可加性。
-    - **时变系统与时不变系统**。时不变系统要满足 $T[x(t-t_0)]=y(t-t_0)$ 或 $T[x(n-m)]=y(n-m)$
-    - 判断线性、时不变性的关键点在于，套用公式时，**要明确是对 $x(t)$ 或 $x(n)$ 进行变换（即 $T[x(t)]$ 或 $T[x(n)]$），还是对 $t$ 或 $n$ 进行变换（即 $y(t)$ 或 $y(n)$）**。
-    - 同时具有**线性**和**时不变性**的系统成为**线性时不变系统**，也即 **LTI 系统**
-    - **因果系统与非因果系统**。如果输出取决于**未来的输入**则成为非因果系统。非因果系统是不可物理实现的
-    - **稳定系统**。输入有界且输出也有界，称为稳定系统，否则称为不稳定系统
-    - **零输入响应**：**输入信号为零**，仅由**系统初始状态**(系统没有外部激励时系统的固有状态)单独作
-    用于系统而产生的输出响应，用 $y_{zi}(t)$ 表示
-    - **零状态响应**：忽略系统的初始状态，**只由外部激励**作用于系统而产生的输出响应，用 $y_{zs}(t)$ 表示
-    - **全响应**：$y_{zi}(t) + y_{zs}(t)$
+#### 信号定义
+信号是信息的载体，信息是信号的内涵。
+
+#### 信号的分类
+- 连续时间信号 &hArr; 离散时间序列
+- 周期信号 &hArr; 非周期信号
+- 确定性信号 &hArr; 随机信号
+- 能量信号 &hArr; 功率信号。能量信号绝对平方可积（和），否则称为功率信号。
+- 因果信号 &hArr; 反因果信号。**右边信号**就是**因果信号**，**左边信号**就是**反因果信号**。
+
+#### 连续与离散信号的运算
+- 反褶
+- 移位
+- 尺度变换
+- 加、减、乘、标量乘
+- 差分运算：向前差分：$\nabla x[n] = x[n+1] - x[n]$；向后差分：$\Delta x[n] = x[n] - x[n-1]$。且 $\nabla x[n] = \Delta x[n-1]$。
+- 卷积运算：连续信号的卷积分：$\int_{-\infty}^{\infty} f_1(\tau) f_2(t-\tau) d\tau$；离散信号的卷积：$x[n] * y[n] = \sum_{k=-\infty}^{\infty} x[k] y[n-k]$。卷积运算的性质：交换律、分配律、结合律。
+- 离散线性卷积计算示例：<br>![alt text](image-5.png)
+
+#### 常见的信号序列
+- 正弦类：$f(t)=A\cos(\omega t+\varphi)$。根据欧拉恒等式，正弦函数信号可以写为：$\sin(\omega t) = \frac{e^{j\omega t}-e^{-j\omega t}}{2j}$，$\cos(\omega t) = \frac{e^{j\omega t}+e^{-j\omega t}}{2}$。
+- 指数类：$f(t)=Ae^{st}$。根据欧拉等式，指数函数信号可以写为：$e^{j\omega t} = \cos(\omega t) + j\sin(\omega t)$。
+- 单位冲激信号：$\boxed{f(t)=\delta(t)=\begin{cases} \infty & t = 0\\0 & t\neq 0\end{cases}}$ 且有 $\boxed{\int_{-\infty}^{\infty} \delta(t) dt=1}$，且有如下筛选特性：$\int_{-\infty}^{\infty}f\left(t\right)\delta\left(t\right)dt=\int_{0-}^{0+}f\left(t\right)\delta\left(t\right)dt=f\left(0\right)\int_{0-}^{0+}\delta\left(t\right)dt=f\left(0\right)$
+- 单位阶跃信号：$\boxed{f(t)=u(t)=\begin{cases} 1 & t > 0\\0 & t < 0\end{cases}}$.
+- 门函数：$\boxed{\prod(\frac{t}{\tau}) = u(t+\frac{\tau}{2}) - u(t-\frac{\tau}{2}) = \begin{cases} 1 & |t| < \frac{\tau}{2} \\ 0 & others \end{cases}}$；矩形序列：$R_N(n) = \begin{cases} 1 & 0\leq n\leq N-1 \\ 0 & others \end{cases}$。
+- 内插函数信号（辛格函数）：$sinc(x) = \frac{\sin(x)}{x}$。
+
+#### 系统
+- 直接理解成这个就行：$y(t)=T[x(t)]$
+- **连续系统与离散系统**
+- **线性系统与非线性系统**。线性系统要满足**可加性**和**比例性**，即：$T[x_1(t)+x_2(t)]=T[x_1(t)]+T[x_2(t)]$、$T[a_1x_1(t)]=a_1y_1(t)$。一般来说，带常数就不是线性系统，同时不满足比例性和可加性。
+- **时变系统与时不变系统**。时不变系统要满足 $T[x(t-t_0)]=y(t-t_0)$ 或 $T[x(n-m)]=y(n-m)$
+- 判断线性、时不变性的关键点在于，套用公式时，**要明确是对 $x(t)$ 或 $x(n)$ 进行变换（即 $T[x(t)]$ 或 $T[x(n)]$），还是对 $t$ 或 $n$ 进行变换（即 $y(t)$ 或 $y(n)$）**。
+- 同时具有**线性**和**时不变性**的系统成为**线性时不变系统**，也即 **LTI 系统**
+- **因果系统与非因果系统**。如果输出取决于**未来的输入**则成为非因果系统。非因果系统是不可物理实现的
+- **稳定系统**。输入有界且输出也有界，称为稳定系统，否则称为不稳定系统
+- **零输入响应**：**输入信号为零**，仅由**系统初始状态**(系统没有外部激励时系统的固有状态)单独作
+用于系统而产生的输出响应，用 $y_{zi}(t)$ 表示
+- **零状态响应**：忽略系统的初始状态，**只由外部激励**作用于系统而产生的输出响应，用 $y_{zs}(t)$ 表示
+- **全响应**：$y_{zi}(t) + y_{zs}(t)$
         
 ## 2 连续信号的傅里叶变换
 
@@ -168,10 +174,48 @@
 - 初值定理：$x(0)=\lim_{z\to\infty}X(z)$
 - 终值定理：$\lim_{n\to\infty}x(n)=\lim_{z\to1}(z-1)X(z)$
 
+#### 离散系统的时域分析与系统函数
+1. z 变换法解常系数差分方程
+    1. 等式两边单边 z 变换（利用 z 变换的位移性质）
+    1. 对不包含 $X(z)$ 的部分应用 z 逆变换，求得零输入响应
+    1. 对包含 $X(z)$ 的部分应用 z 逆变换，先求 $x(n)$ 的 z 变换得到 $X(z)$，带入后求 z 逆变换，求得零状态响应
+    1. 相加得全响应
+1. 定义离散系统的系统函数：$\boxed{H(z)=\frac{Y_{zs}(z)}{X(z)}=\frac{\sum_{j=0}^{M}b_{j}z^{-j}}{\sum_{i=0}^{N}a_{i}z^{-i}}}$，且可以利用 $H(z)$ 求单位脉冲响应 $h(t)$
+1. 离散系统的稳定性
+    1. 系统稳定性的定义：当输入信号有界，输出信号也必定有界
+    1. 系统输出等于单位脉冲响应与系统输入的卷积：$y(n)=h(n)*x(n)$
+    1. $H(z)$ 的极点：
+        1. 在单位圆上：$h(n)$ 的累加和与该极点的对应项为复正弦序列
+        1. 在单位圆内：$h(n)$ 的累加和与该极点的对应项为指数衰减序列
+        1. 在单位圆外：$h(n)$ 的累加和与该极点的对应项为指数递增序列
+        1. 显然若为复正弦、递增，会导致 $h(n)$ 不绝对可和，进而导致系统不稳定，因此若说系统是稳定的，$H(z)$ 的极点必须均在单位圆内
 
 ## 5 离散傅里叶变换（DFT）
 
 ---
+
+#### 有限长序列的 DFT
+1. 旋转因子：$W^n_N=e^{-j\frac{2\pi}{N}n}$
+    1. 共轭对称性
+    1. 周期性
+    1. 可约性，就是 $n$ 和 $N$ 可以约分
+    1. 正交性
+1. 离散傅里叶变换定义
+    1. 正变换：$\boxed{X(k)=\mathrm{DFT}[x(n)]=\sum_{n=0}^{N-1}x(n)W_N^{kn}\quad0\leq k\leq N-1}$
+    1. 逆变换：$\boxed{x(n)=\mathrm{IDFT}[X(k)]=\frac{1}{N}\sum_{k=0}^{N-1}X(k)W_N^{-kn}\quad0\leq n\leq N-1}$
+
+#### DFT 的性质
+1. 线性性质：可加性和比例性
+1. 共轭对称性
+1. 循环（圆周）移位特性，若：$x[n]\overset{\mathrm{DFT}}{\operatorname*{\longleftrightarrow}}X[k]$
+    1. 时域的循环位移对应频域的相移，$x[(n+m)_N]\overset{\mathrm{DFT}}{\operatorname*{\longleftrightarrow}}W_N^{-km}X[k]$
+    1. 时域的相移对应频域的循环位移，$W_N^{ln}x[n]\overset{\mathrm{DFT}}{\operatorname*{\longleftrightarrow}}X[(k+l)_N]$
+1. 循环（圆周）卷积
+    1. 若 $x[n]$ 的长度为 $N$，$h[n]$的长度为 $M$，则 $L\geq N+M-1$ 点循环卷积等于 $x[n]$ 与 $h[n]$ 的[线性卷积](#_4)。
+    1. 循环卷积计算示例：<br> ![alt text](image-6.png)
+    1. 循环卷积定理：
+        1. 时域卷积定理：$x_1[n]x_2[n]\leftarrow\xrightarrow{\mathrm{DFT}}\frac1NX_1[k]\textcircled {n}X_2[k]$
+        1. 频域卷积定理：$x_1[n]\textcircled n$   $x_2[n]\longleftarrow\xrightarrow{\mathrm{DFT}}X_1[k]X_2[k]$
 
 ## 6 快速傅里叶变换（FFT）
 
@@ -179,19 +223,49 @@
 
 #### 按时间抽取的基-2FFT算法
 
-- 正常算法的时间复杂度：$N^2$
-- 本算法和按频率抽取的基-2FFT算法的复杂度：$\frac{N}{2}\mathrm{log}_2N$
-
 ![按时间抽取的基-2FFT算法](5.png)
 
 #### 按频率抽取的基-2FFT算法
 
 ![按频率抽取的基-2FFT算法](6.png)
 
+#### 时间复杂度
+1. 正常算法的时间复杂度：$N^2$
+1. 两种基-2FFT算法的复杂度：$\frac{N}{2}\mathrm{log}_2N$
+
 #### 逆快速傅里叶变换（IFFT）
 
 - $x[k]=\frac{1}{N}(\mathrm{DFT}\{X^*[m]\})^*$
 - 意即：将 $X[m]$ 选取共轭，用 $FFT$ 流图计算 $DFT\{X^*[m]\}$，再取共轭并除以 $N$
+
+#### FFT 应用
+1. 利用 $N$ 点复序列 FFT 计算 2 个 $N$ 点实序列 FFT
+    1. 把两个实序列构造为 $x_1[k]+jx_2[k]$
+    1. 计算 FFT 得到 $Y[m]$
+    1. $X_1[m]=\frac{1}{2}\left\{Y[m]+Y^*[(N-m)_N]\right\}$
+    1. $X_2[m]=\frac{1}{2j}\left\{Y[m]-Y^*[(N-m)_N]\right\}$
+1. 利用 $N$ 点复序列 FFT 计算 $2N$ 点实序列 FFT
+    1. 把 $2N$ 实序列分解为：$\begin{cases}x_{1}[k]=x[2k]\\x_{2}[k]=x[2k+1]&\end{cases}$
+    1. 构造 $x_1[k]+jx_2[k]$
+    1. 计算 FFT 得到 $Y[m]$
+    1. $2N$ 点实序列的 FFT 的前 $N$ 点：$X[m]=X_1[m]+W_{2N}^mX_2[m]$
+    1. $2N$ 点实序列的 FFT 的后 $N$ 点：$X[m+N]=X_1[m]-W_{2N}^mX_2[m]$
+1. [利用 $N$ 点复序列 FFT 计算 $N$ 点复序列 IFFT](#ifft)
+1. 频谱混叠：使抽样频率 $f_{sam}$ 满足 $f_{sam}\geq 2f_{m}$
+1. 泄露现象
+    1. 原因：原函数和矩形函数在时域上相乘，新函数的频谱相当于频域上卷积，即原函数的频谱与 $sinc$ 函数做卷积操作，可想而知频谱会向高频分散，就好像泄露一样
+    1. 提高分辨率措施：增加窗函数的长度 $N$，使之满足 $N\geq \frac{f_{sam}}{\Delta f_c}=\frac{f_{sam}}{f_2-f_1}$，其中 $\Delta f_c$ 为分辨率。该公式同样可以确定最短采集时间，式子两侧同时乘以 $\frac{1}{f_{sam}}$，即每两个抽样点的时间间隔 $T$，可得最短采集时间 $T_p=\frac{1}{\Delta f_c}$，即分辨率的倒数。
+1. 栅栏现象：DFT 点数 $L\geq\frac{f_{sam}}{\Delta f_d}$，其中 $\Delta f_d$ 为谱线间隔。实际上，$L$ 一般取 2 的次幂，即 $L=2^{\lceil \log_2{\frac{f_{sam}}{\Delta f_d}} \rceil}$
+
+| 窗函数类型      | 主瓣有效宽度| 旁瓣峰值衰耗  |  
+|-------------------------------|-------------------------------|---------------------------------|  
+| 矩形 (Rectangle)             | 2π / N                       | 13 dB                          |  
+| 汉宁 (Hanning)               | 4π / N                       | 31 dB                          |  
+| 海明 (Hamming)               | 4π / N                       | 41 dB                          |  
+| 布莱克曼 (Blackman)          | 6π / N                       | 57 dB                          |  
+| 凯塞 (Kaiser) b=5.86         | 5π / N                       | 57 dB                          |
+
+\*主瓣有效宽度越小越好、旁瓣峰值衰耗越大越好，但往往鱼和熊掌不可兼得，只能取一个平衡
 
 ## 7 数字滤波器设计
 
@@ -199,20 +273,18 @@
 
 #### 滤波器的基本概念
 - 概念 离散时间系统，输入、输出均为数字信号。可以根据需要，通过数值运算改变信号频率成分的相对比例，或者有选择性的滤除输入信号的某些频率成分
-- 按功能分类![alt text](image-1.png)
+- 按功能分类 <br> ![alt text](image-1.png)
 - 按单位脉冲响应长度分类
-    - FIR 滤波器 $H(z)=\sum_{n=0}^{N-1}h(n)z^{-n}$
-    - IIR(Infinite Impulse Response) 滤波器 $H(z)=\frac{\sum_{j=0}^{M}b_{j}z^{-j}}{1+\sum_{i=1}^{N}a_{i}z^{-i}}$
+    - `FIR` 滤波器 $H(z)=\sum_{n=0}^{N-1}h(n)z^{-n}$
+    - `IIR` (Infinite Impulse Response) 滤波器 $H(z)=\frac{\sum_{j=0}^{M}b_{j}z^{-j}}{1+\sum_{i=1}^{N}a_{i}z^{-i}}$
 - 技术指标
     - 频率响应函数：$H(e^{j\omega})=\left|H(e^{j\omega})\right|e^{j\theta(\omega)}$，则：
       - 幅频特性 $\left|H(e^{j\omega})\right|$，表示信号通过该滤波器后**各频率成分振幅衰减**情况
       - 相频特性 $\theta(\omega)$，反应各频率成分通过滤波器后**各频率成分在时间上的延时**情况
-    - 理想数字滤波器
-      - ![alt text](image-2.png)
-      - 通带衰减(dB) $A_{\mathrm{p}}=-20\lg(1-\delta_{\mathrm{p}})$
-      - 阻带衰减(dB) $A_{\mathrm{s}}=-20\lg\delta_{\mathrm{s}}$
-    - 实际低通数字滤波器
-      - ![alt text](image-3.png)
+    - 理想数字滤波器 <br> ![alt text](image-2.png)
+      - 通带衰减(dB) $\boxed{A_{\mathrm{p}}=-20\lg(1-\delta_{\mathrm{p}})}$
+      - 阻带衰减(dB) $\boxed{A_{\mathrm{s}}=-20\lg\delta_{\mathrm{s}}}$
+    - 实际低通数字滤波器 <br> ![alt text](image-3.png)
       - $\omega_\mathrm{p}$：通带截止频率
       - $\omega_\mathrm{s}$：阻带截止频率
       - $\delta_{\mathfrak{p}}$：通带波动
@@ -220,8 +292,7 @@
 
 #### 常用模拟滤波器的设计方法
 - 由幅度平方函数确定。看不懂，做题碰到了再说吧。
-- Butterworth 低通逼近
-    - ![alt text](image-4.png)
+- Butterworth 低通逼近 <br> ![alt text](image-4.png)
     - $\left|H(\mathrm{j}\Omega)\right|^2=\frac{1}{1+\left(\Omega/\Omega_\mathrm{c}\right)^{2N}}$
     - 具有单调下降的幅频特性
     - 最大平坦性 $|H(\mathrm{j}\Omega)|^2$ 在 $\Omega=0 $ 点的 $1$ 到 $2N-1$ 阶导数为零
@@ -235,15 +306,19 @@
 
 #### 无限长单位脉冲响应 `IIR` 数字滤波器的设计
 - 脉冲响应不变法（线性变换）
-    - 对应关系：$H(s)=\sum\limits_{i=1}^{N}\frac{A}{s-p_i}$ 和 $H(z)=\sum\limits^{N}_{i=1}\frac{TA_i}{1-e^{p_iT} z^{-1}}$
+    - 对应关系：$H(s)=\sum\limits_{i=1}^{N}\frac{A}{s-p_i}$ 和 $\boxed{H(z)=\sum\limits^{N}_{i=1}\frac{A_i}{1-e^{p_iT} z^{-1}}}$
+    - $\omega$ 和 $\Omega$ 的关系：$\Omega=\frac{\omega}{T}$
     - 由上面的式子可知，求出 $A_i$ 和 $p_i$ 是写出两种式子的关键
-    - 优点：时域逼近良好，线性
+    - 优点：时域逼近良好，线性（$\Omega=\frac{\omega}{T}$）
     - 缺点：频率响应的混叠失真，只适用于限带的模拟滤波器（**低通、带通**）
 - 双线性变换法（非线性变换，$tan$ 函数）
-    - 对应关系：$H\left(z\right)=H_{a}\left(s\right)|_{s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}}=H_{a}\left(\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}\right)$
+    - 对应关系：$\boxed{H\left(z\right)=H_{a}\left(s\right)|_{s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}}=H_{a}\left(\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}\right)}$
+    - $\omega$ 和 $\Omega$ 的关系：$\Omega=\frac{2}{T}\tan(\frac{\omega}{2})$
     - 不用分式展开，比较友好
     - 优点：避免了混叠失真（以引入非线性为代价），能直接用于设计低通、带通、高通、带阻滤波器，保持原有的幅频性能
     - 缺点：转换前后的频率呈非线性关系（可以通过频率预畸变减轻），产生相频特性失真
+
+#### 有限长脉冲响应数字滤波器设计（FIR）
 
 
 ## 需要关注的课后习题
