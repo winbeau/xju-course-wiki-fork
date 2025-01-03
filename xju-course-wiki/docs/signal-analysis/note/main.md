@@ -319,7 +319,27 @@
     - 缺点：转换前后的频率呈非线性关系（可以通过频率预畸变减轻），产生相频特性失真
 
 #### 有限长脉冲响应数字滤波器设计（FIR）
+1. $H\left(z\right)=\sum_{j=0}^{N-1}b_{j}z^{-j}$ 和 $h(n)=\sum_{i=0}^{N-1}b_jx(n-j)$
+1. 线性相位是指 $\phi(\omega)$ 是 $\omega$ 的线性函数
+    1. 严格线性相位系统：$\phi(\omega)=-\alpha\omega$
+    1. 宽（广义）线性相位系统：$\phi(\omega)=-\alpha\omega+\beta$
+1. 四种线性相位系统 <br> ![alt text](image-7.png) <br> ![alt text](image-8.png)
+1. 窗函数法设计 `FIR` 滤波器
+    1. 核心：只需求出  $H\left(z\right)=\sum_{n=0}^{N-1}b_{n}z^{-n}=\sum_{n=0}^{N-1}h(n)z^{-n}$ 中的 $h(n)$
+    1. 由设计目标 $H_{\mathrm{d}}(\mathrm{e}^{\mathrm{j}\omega})$ 确定`FIR` 的类型 (四选一) 和幅度函数 $A_{\mathrm{d}}(\omega)$，$H_\text{d}(\mathrm{e}^{\mathrm{j}\omega})=A_d(\omega)e^{j\varphi_d(\omega)}$
+    1. 根据类型确定线性相位FIR滤波器的相位 $\varphi_{\mathrm{d}}(\omega)$，$\varphi_{\mathrm{d}}(\omega)=-\alpha\omega+\beta\quad(\beta=0, \pi/2)$
+    1. 根据 $A_{\mathrm{d}}(\omega)$ 和 $\varphi_{\mathrm{d}}(\omega)$ 通过 `IDTFT` 求解 $h_\mathrm{d}(n)$，$h_\mathrm{d}(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}A_\mathrm{d}(\omega)\mathrm{e}^{\mathrm{j}\varphi_\mathrm{d}(\omega)}\mathrm{e}^{\mathrm{j}k\omega}\mathrm{d}\omega $
+    1. 加窗截短 $h_\mathrm{d}(n)$，得到有限长因果序列 $h(n)$，$h(\mathrm{n})=h_\mathrm{d}(\mathrm{n})w_N(\mathrm{n})$
 
+| 特性           | FIR                                      | IIR                                      |  
+|----------------|-----------------------------------------|-----------------------------------------|  
+| 严格线性相位   | 有                                      | 没有                                    |  
+| h(n) 长度      | 有限                                    | 无限                                    |  
+| 稳定性         | 极点全部在原点（永远稳定），无稳定性问题 | 有稳定性问题                            |  
+| 阶数           | 高                                      | 低                                      |  
+| 结构           | 非递归                                  | 递归系统                                |  
+| 运算误差       | 无反馈，运算误差小                      | 有反馈，由于运算中的四舍五入会产生极限环 |  
+| 快速算法       | 用 FFT 实现，减少运算量                 | 无快速运算方法                          |
 
 ## 需要关注的课后习题
 
