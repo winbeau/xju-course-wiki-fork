@@ -83,3 +83,6 @@ nav:
     - 线性代数:
         - 课程简介: linear-algebra/intro/main.md
         - 笔记: linear-algebra/note/main.md
+    - 嵌入式：
+        - 课程简介: emb-linux/intro/main.md
+        - 笔记: emb-linux/note/main.md
