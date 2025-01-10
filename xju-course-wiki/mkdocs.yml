@@ -86,3 +86,6 @@ nav:
     - 嵌入式：
         - 课程简介: emb-linux/intro/main.md
         - 笔记: emb-linux/note/main.md
+    - 算法设计与分析
+        - 课程简介：algorithm/intro/main.md
+        - 笔记：algorithm/note/main.md
