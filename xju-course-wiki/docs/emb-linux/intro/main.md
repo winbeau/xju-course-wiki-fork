@@ -1,5 +1,9 @@
 # 嵌入式
 
+## 课程评价
+
+无用水课，复习把书翻熟就行。
+
 <script src="https://giscus.app/client.js"
         data-repo="SunSeaLucky/xju-course-wiki"
         data-repo-id="R_kgDONf4gSg"
