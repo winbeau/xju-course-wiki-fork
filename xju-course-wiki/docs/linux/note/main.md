@@ -61,9 +61,11 @@ ls、cat、more、cd、cp、pwd、mv、rm、mkdir、grep、sort、tail、chmod�
 1. 释放 `TAR` 包
 1. 查看并阅读包内附带的软件安装说明
 1. 进行编译准备。`--prefix` 指的是安装路径，`--with` 指的是安装本文件所依赖的库文件
+
 ```
 ./configure  [--prefix=directory --with=library]
 ```
+
 4. 进行编译。经过执行 `./configure` 会产生 `MakeFile` 文件，运行 `make` 命令进行编译
 1. 进行软件安装。执行 `make install` 安装软件
 1. 清除临时文件。执行 `make clean` 清除编译过程中产生的临时文件
@@ -153,6 +155,13 @@ gcc example.o -o example
 
 ```
 gcc example.c -o example
+```
+
+调试：
+
+```
+gcc -g example.c -o example
+gdb example
 ```
 
 #### 符号链接和硬链接文件的区别，怎样创建链接文件
