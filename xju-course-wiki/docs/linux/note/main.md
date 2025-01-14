@@ -104,6 +104,13 @@ ls、cat、more、cd、cp、pwd、mv、rm、mkdir、grep、sort、tail、chmod�
 1. 输出重定向：`ls -l > output.txt` 或 `echo "Hello again!" >> output.txt`
 
 #### Linux系统的特殊权限 SUID（文件）、SGID（文件和目录）、SBIT（目录）
+
+SUID（Set User ID）：当一个文件设置了 `SUID` 位并被执行时，执行该文件的用户会**临时获得文件所有者的权限**，而不是以执行者本身的权限运行。
+
+SGID（Set Group ID）：当一个文件设置了 `SGID` 位并被执行时，执行该文件的用户会**临时获得文件所属组的权限**，而不是以执行者本身的组权限运行。
+
+SBIT（Sticky Bit）：当一个目录设置了 `Sticky Bit` 时，目录中的文件只能**被文件的所有者或 root 用户删除或修改**，即使其他用户对该目录有写权限。
+
 #### Linux C 语言程序编译方法，调试方法
 
 编译器就是将高级程序语言转换为执行效率更高的机器语言的程序，GCC 也是使用最为普遍的一种编译器。
@@ -115,11 +122,19 @@ ls、cat、more、cd、cp、pwd、mv、rm、mkdir、grep、sort、tail、chmod�
 | -c        | **汇编**源文件，但不进行连接            |  
 | -o file   | **连接**，指定输出文件为 file                     |
 
+分阶段：
+
 ```
 gcc -E example.c -o example.i
 gcc -S example.c -o example.s
 gcc -c example.c -o example.o
 gcc example.o -o example
+```
+
+一步到位：
+
+```
+gcc example.c -o example
 ```
 
 #### 符号链接和硬链接文件的区别，怎样创建链接文件
@@ -200,6 +215,11 @@ Linux 系统的主要应用领域包括：
 1. 保存退出
 
 #### 文件基本操作综合
+
+可以联系数据库中的增删改查想一想，至少有**添加文件、删除文件、修改文件、查看文件**。
+
+所对应的命令有 `touch`、`rm`、`cp`、`mv`、`cat`、`less`、`head`、`tail`、`grep`、`find`。
+
 #### 提升普通用户成为管理员（ `/etc/sudoers` 文件的配置）
 
 直接编辑 `/etc/sudoers` 文件可能会导致语法错误，从而使系统无法正常使用 `sudo`。推荐使用 `visudo` 工具来编辑 `/etc/sudoers` 文件。
@@ -215,6 +235,48 @@ username    ALL=(ALL:ALL) ALL
 
 #### 多用户管理（用户和组管理）
 
+添加用户：
+
+```
+useradd -m -d /home/username -s /bin/bash username
+```
+
+删除用户：
+
+```
+userdel -r username
+```
+
+添加组：
+
+```
+groupadd groupname
+```
+
+删除组：
+
+```
+groupdel groupname
+```
+
+将用户加入组：
+
+```
+gpasswd -a 用户名 组名
+```
+
+设置组的管理员：
+
+```
+gpasswd -A username groupname
+```
+
+
 ## `Shell` 脚本编程
 
 参考实验课 `Shell` 脚本例子
+
+自己遇到的注意的点：
+
+1. 判断字符是否为空要用 `[[ X"$msg" == "X" ]]`
+1. 每条 `case` 后面要加双分号
