@@ -8,7 +8,7 @@
 
 因众所周的原因，我无法给大家介绍更多除课程以外的知识与技巧。**如果你的目标不是寻找课程资源，请查看下面的推荐资源部分**。下面的每一本手册都值得你细细体会，希望学弟、学妹们可以规划好自己的大学生涯。
 
-1. [新疆大学 · 期末资料仓库](https://github.com/Indolent-Kawhi/XJU-Computing-Heart)。
+1. [新疆大学 · 期末资料仓库](https://github.com/Indolent-Kawhi/XJU-Computing-Heart)
 2. [北京大学 · CS 自学指南](https://csdiy.wiki/)
 3. [南方科技大学 · 经验分享网](https://sustech-application.com/)
 4. [上海交通大学 · 生存手册](https://survivesjtu.gitbook.io/survivesjtumanual)
