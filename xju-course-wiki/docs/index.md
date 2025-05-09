@@ -25,20 +25,6 @@
 
 —— 选自 [CS 自学指南](https://csdiy.wiki/%E5%90%8E%E8%AE%B0/)
 
-> 我多希望有一天，我们不再是竞争关系
-> 
-> 我多希望有一天，合作的火焰可以温暖黑暗
->
-> 好啊，你说合作是唯一的出路
->
-> 可是，后来我才知道，你说的是成功者的出路
-> 
-> 好吧，竞争与压迫永远存在
->
-> 好吧，竞争与压迫永远存在
->
-> 好吧，竞争与压迫永远存在
-
 <script src="https://giscus.app/client.js"
         data-repo="SunSeaLucky/xju-course-wiki"
         data-repo-id="R_kgDONf4gSg"
