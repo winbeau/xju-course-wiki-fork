@@ -4,6 +4,10 @@
 
 无用水课，复习把书翻熟就行。
 
+## 推荐老师
+
+- 👍 薛花（人美年轻时尚，什么？课讲得咋样？忘了）
+
 <script src="https://giscus.app/client.js"
         data-repo="SunSeaLucky/xju-course-wiki"
         data-repo-id="R_kgDONf4gSg"
